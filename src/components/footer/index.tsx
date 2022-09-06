@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className={s.footer}>
       <a
         className={s.link}
-        href="https://github.com/SHEVEL0V/phonebook"
+        href="https://github.com/SHEVEL0V/phonebook-v02"
         target="blank"
       >
         <AiFillGithub className={s.icon} />
