@@ -1,16 +1,15 @@
 /** @format */
 
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateAvatar } from "redux/user/user-operations";
-import { userSel } from "redux/user/user-selectors";
+import { updateAvatar } from "redux/user/operations";
+import { userSel } from "redux/user/selectors";
 import s from "./style.module.css";
 
-export default function UserPage() {
+const UserPage = () => {
   const [file, setFile] = useState("");
   const { avatarURL, name, email } = useAppSelector(userSel);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -44,4 +43,5 @@ export default function UserPage() {
       </form>
     </div>
   );
-}
+};
+export default UserPage;

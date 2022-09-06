@@ -5,8 +5,8 @@ import { configureStore } from "@reduxjs/toolkit";
 // import storage from "redux-persist/lib/storage";
 import filter from "./filter/slise";
 import pagination from "./pagination/slice";
-import contactsReduse from "./contacts/contacts-slice";
-import userReduser from "./user/user-slice";
+import contactsReduse from "./contacts/slice";
+import userReduser from "./user/slice";
 
 // const persistConfig = {
 //   key: "auth",

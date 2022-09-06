@@ -1,0 +1,171 @@
+/** @format */
+
+import { memo, useState, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import {
+  AiFillDelete,
+  AiFillStar,
+  AiFillSetting,
+  AiFillSave,
+} from "react-icons/ai";
+import ClipLoader from "react-spinners/ClipLoader";
+import Input from "components/input";
+import ButttonRoad from "components/button/buttonRoad";
+import {
+  deleteContact,
+  updateContact,
+  addStatusFavorite,
+} from "redux/contacts/operations";
+import {
+  loadingDeleteSel,
+  loadingStatusSel,
+  loadingUpdateSel,
+  errorUpdateSel,
+  idSel,
+} from "redux/contacts/selectors";
+import { updateId } from "redux/contacts/slice";
+import { Contact } from "../../types/contact";
+import s from "./style.module.css";
+
+interface IProps {
+  card: Contact;
+}
+
+const ContactCard: React.FC<IProps> = ({ card }) => {
+  const { name, phone, _id: id, email, favorite } = card;
+
+  const [valueName, setValueName] = useState(name);
+  const [valuePhone, setValuePhone] = useState(phone);
+  const [valueEmail, setValueEmail] = useState(email);
+
+  const [disabledInp, setDisabledInp] = useState(true);
+
+  const currentId = useAppSelector(idSel);
+  const loadingUpdate = useAppSelector(loadingUpdateSel);
+  const loadingDelete = useAppSelector(loadingDeleteSel);
+  const loadingStatus = useAppSelector(loadingStatusSel);
+  const error = useAppSelector(errorUpdateSel);
+
+  const disabledBtn = loadingDelete || loadingStatus || loadingUpdate;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (error) {
+      setValuePhone(phone);
+      setValueName(name);
+      setValueEmail(email);
+    }
+  }, [email, error, name, phone, valueEmail]);
+
+  const onClickUpdateSt = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    dispatch(updateId(e.currentTarget.id));
+    dispatch(addStatusFavorite({ id, favorite: !favorite }));
+  };
+
+  const onClickUpdateContact = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    dispatch(updateId(e.currentTarget.id));
+    setDisabledInp(!disabledInp);
+
+    const contact = { name: valueName, email: valueEmail, phone: valuePhone };
+    if (name !== valueName || phone !== valuePhone || email !== valueEmail)
+      dispatch(updateContact({ id, contact }));
+  };
+
+  const onClickDelete = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    dispatch(updateId(e.currentTarget.id));
+    dispatch(deleteContact({ id: id }));
+  };
+
+  const IconFavorite = () =>
+    loadingStatus && currentId === id ? (
+      <ClipLoader size={10} />
+    ) : (
+      <AiFillStar />
+    );
+
+  const IconButtonUpdate = () => {
+    const Icon = () => (disabledInp ? <AiFillSetting /> : <AiFillSave />);
+    return loadingUpdate && currentId === id ? (
+      <ClipLoader size={10} />
+    ) : (
+      <Icon />
+    );
+  };
+
+  const IconButtonDelete = () =>
+    loadingDelete && currentId === id ? (
+      <ClipLoader size={10} />
+    ) : (
+      <AiFillDelete />
+    );
+
+  return (
+    <li className={s.item}>
+      <ButttonRoad
+        id={id}
+        onClick={onClickUpdateSt}
+        disabled={disabledBtn}
+        style={favorite ? { backgroundColor: " rgb(19, 173, 80, 0.643)" } : {}}
+      >
+        <IconFavorite />
+      </ButttonRoad>
+
+      <div className={s.container}>
+        <Input
+          type="name"
+          style={
+            !disabledInp ? { backgroundColor: "rgba(44, 120, 220, 0.344)" } : {}
+          }
+          disabled={disabledInp}
+          name="name"
+          value={valueName}
+          setValue={(e) => setValueName(e.target.value)}
+        />
+        <Input
+          type="phone"
+          style={
+            !disabledInp ? { backgroundColor: "rgba(44, 120, 220, 0.344)" } : {}
+          }
+          disabled={disabledInp}
+          name="phone"
+          value={valuePhone}
+          setValue={(e) => setValuePhone(e.target.value)}
+        />
+        <Input
+          type="email"
+          style={
+            !disabledInp ? { backgroundColor: "rgba(44, 120, 220, 0.344)" } : {}
+          }
+          disabled={disabledInp}
+          name="email"
+          value={valueEmail}
+          setValue={(e) => setValueEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <ButttonRoad
+          id={id}
+          disabled={disabledBtn}
+          onClick={onClickUpdateContact}
+          style={
+            !disabledInp ? { backgroundColor: " rgb(236, 28, 28, 0.643)" } : {}
+          }
+        >
+          <IconButtonUpdate />
+        </ButttonRoad>
+        <ButttonRoad id={id} disabled={disabledBtn} onClick={onClickDelete}>
+          <IconButtonDelete />
+        </ButttonRoad>
+      </div>
+    </li>
+  );
+};
+
+export default memo(ContactCard);

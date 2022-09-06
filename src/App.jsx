@@ -1,17 +1,19 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Container from './components/container';
-import Header from 'components/header';
-import Footer from 'components/footer';
-import { useSelector, useDispatch } from 'react-redux';
-import { isLoggedIn } from 'redux/user/user-selectors';
-import { fetchCurentUser } from 'redux/user/user-operations';
-import ContactsPage from 'views/contacts-page';
-import { useEffect } from 'react';
-import PrivateRoute from './components/Private-route';
+/** @format */
 
-const Home = lazy(() => import('views/home-page'));
-const UserPage = lazy(() => import('views/user-page'));
+import React, { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
+import Container from "./components/container";
+import Header from "components/header";
+import Footer from "components/footer";
+import { useSelector, useDispatch } from "react-redux";
+import { isLoggedIn } from "redux/user/selectors";
+import { fetchCurentUser } from "redux/user/operations";
+import ContactsPage from "views/contacts-page";
+import { useEffect } from "react";
+import PrivateRoute from "./components/Private-route";
+
+const Home = lazy(() => import("views/home-page"));
+const UserPage = lazy(() => import("views/user-page"));
 
 export default function App() {
   const status = useSelector(isLoggedIn);
