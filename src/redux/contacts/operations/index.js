@@ -1,15 +1,7 @@
 /** @format */
 
-import { addContact } from "./addContact";
-import { deleteContact } from "./deleteContact";
-import { getContact } from "./getContact";
-import { updateContact } from "./updateContact";
-import { addStatusFavorite } from "./updateStatusContact";
-
-export {
-  addContact,
-  deleteContact,
-  getContact,
-  updateContact,
-  addStatusFavorite,
-};
+export { addContact } from "./addContact";
+export { deleteContact } from "./deleteContact";
+export { getContact } from "./getContact";
+export { updateContact } from "./updateContact";
+export { addStatusFavorite } from "./updateStatusContact";

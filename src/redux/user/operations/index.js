@@ -1,17 +1,8 @@
 /** @format */
 
-import { updateAvatar } from "./updateAvatar";
-import { fetchCurentUser } from "./auth";
-import { loginUser } from "./login";
-import { logoutUser } from "./logout";
-import { repitSendMail } from "./sendMail";
-import { singnupUser } from "./signap";
-
-export {
-  updateAvatar,
-  fetchCurentUser,
-  logoutUser,
-  loginUser,
-  repitSendMail,
-  singnupUser,
-};
+export { updateAvatar } from "./updateAvatar";
+export { fetchCurentUser } from "./auth";
+export { loginUser } from "./login";
+export { logoutUser } from "./logout";
+export { repitSendMail } from "./sendMail";
+export { singnupUser } from "./signap";
