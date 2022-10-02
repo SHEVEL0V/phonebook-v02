@@ -1,25 +1,25 @@
 /** @format */
 
 import { configureStore } from "@reduxjs/toolkit";
-// import { persistStore, persistReducer, PERSIST } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import filter from "./filter/slise";
 import pagination from "./pagination/slice";
 import contactsReduse from "./contacts/slice";
 import userReduser from "./user/slice";
 
-// const persistConfig = {
-//   key: "auth",
-//   storage,
-//   whitelist: ["token", "isLoggedIn", "user", "contacts", "avatarURL"],
-// };
+const persistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token", "isLoggedIn", "user", "contacts", "avatarURL"],
+};
 
 export const store = configureStore({
   reducer: {
     filter,
     pagination,
-    // auth: persistReducer(persistConfig, userReduser),
-    auth: userReduser,
+    auth: persistReducer(persistConfig, userReduser),
+    // auth: userReduser,
     contacts: contactsReduse,
   },
 
@@ -31,7 +31,7 @@ export const store = configureStore({
   //   }),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -7,7 +7,7 @@ import {
   loginUser,
   repitSendMail,
   logoutUser,
-  // fetchCurentUser,
+  fetchCurentUser,
   // updateAvatar,
 } from "./operations";
 
@@ -68,6 +68,9 @@ const user = createSlice({
       })
       .addCase(repitSendMail.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(fetchCurentUser.fulfilled, (state) => {
+        state.authentication = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.isLoggedIn = false;

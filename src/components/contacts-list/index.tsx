@@ -39,7 +39,7 @@ const ContactsList: React.FC = () => {
 
       <ul>
         {contacts
-          ? contacts.map((el) => <ContactCard key={el._id && ""} card={el} />)
+          ? contacts.map((el) => <ContactCard key={el._id} card={el} />)
           : []}
       </ul>
       {contacts && <Pagination />}
