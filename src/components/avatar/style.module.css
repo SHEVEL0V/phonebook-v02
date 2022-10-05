@@ -1,3 +1,5 @@
+/** @format */
+
 .avatar_container {
   margin-left: auto;
 
@@ -14,7 +16,9 @@
   font-weight: 700;
 }
 .avatar {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 55px;
   height: 55px;
   border-radius: 50%;
@@ -22,9 +26,8 @@
   border: solid coral;
 }
 .img {
-  width: 100%;
+  width: 150%;
   display: block;
-  height: auto;
 }
 .button {
   display: flex;

@@ -1,3 +1,5 @@
+/** @format */
+
 .container {
   display: flex;
   padding: 30px;
@@ -5,23 +7,47 @@
 
 .form {
   display: flex;
-  flex-direction: column;
+  height: 200px;
+
   column-gap: 20px;
   row-gap: 20px;
 
   width: 500px;
   padding: 10px;
   font-size: 20px;
-  margin-bottom: 20px;
   border: solid;
   border-radius: 10px;
   background-color: rgba(57, 69, 110, 0.274);
 }
+
+.cnt {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid;
+}
 .img {
-  width: 30%;
+  width: 45%;
   margin-right: 20px;
   border: solid;
-  border-radius: 10%;
+  border-radius: 10px;
+}
+.btn {
+  display: block;
+  height: 30px;
+  min-width: 60px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0px 0px 40px -3px rgba(0, 0, 0, 0.75);
+  background-color: rgba(248, 182, 96, 0.683);
+}
+.btn:active {
+  box-shadow: 0px 0px 40px -3px rgba(0, 0, 0, 0.9);
+  background-color: rgb(226, 110, 43);
 }
 
 .fileInput {

@@ -3,7 +3,7 @@
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import { loading } from "redux/user/selectors";
+import { isloadedLog } from "redux/user/selectors";
 import { loginUser } from "redux/user/operations";
 import Buttton from "components/button/button";
 import s from "./style.module.css";
@@ -49,7 +49,7 @@ const LoginForm: React.FC = () => {
       </label>
       <Buttton
         children={
-          useAppSelector(loading) ? <ClipLoader size={15} /> : <b>login</b>
+          useAppSelector(isloadedLog) ? <ClipLoader size={15} /> : <b>login</b>
         }
         disabled={email === "" || password === ""}
         type="submit"

@@ -19,7 +19,6 @@ export const store = configureStore({
     filter,
     pagination,
     auth: persistReducer(persistConfig, userReduser),
-    // auth: userReduser,
     contacts: contactsReduse,
   },
 

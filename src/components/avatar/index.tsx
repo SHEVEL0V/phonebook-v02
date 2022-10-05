@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { userSel, avatarURL } from "redux/user/selectors";
 import { logoutUser } from "redux/user/operations";
 import s from "./style.module.css";
-import img from "../../img/avatar-1-768x768.jpeg";
+// import img from "../../img/avatar-1-768x768.jpeg";
 
 const Avatar: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +12,6 @@ const Avatar: React.FC = () => {
 
   const { name } = useAppSelector(userSel);
   const avatar = useAppSelector(avatarURL);
-  console.log(avatar);
 
   const logOut = () => {
     dispatch(logoutUser());
@@ -27,7 +26,7 @@ const Avatar: React.FC = () => {
         </button>
       </div>
       <div className={s.avatar}>
-        <img className={s.img} src={img} alt="avatar" />
+        <img className={s.img} src={avatar} alt="avatar" />
       </div>
     </div>
   );

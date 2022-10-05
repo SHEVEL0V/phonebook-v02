@@ -2,10 +2,18 @@
 
 import { RootState } from "../store";
 
-const isLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 const authentication = (state: RootState) => state.auth.authentication;
-const loading = (state: RootState) => state.auth.loading;
 const userSel = (state: RootState) => state.auth.user;
 const avatarURL = (state: RootState) => state.auth.user.avatarURL;
+const isloadedReg = (state: RootState) => state.auth.isloadedReg;
+const isloadedLog = (state: RootState) => state.auth.isloadedLog;
+const isloadedAdd = (state: RootState) => state.auth.isloadedAdd;
 
-export { isLoggedIn, userSel, loading, authentication, avatarURL };
+export {
+  userSel,
+  isloadedReg,
+  isloadedLog,
+  isloadedAdd,
+  authentication,
+  avatarURL,
+};

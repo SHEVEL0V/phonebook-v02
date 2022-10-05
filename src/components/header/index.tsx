@@ -3,16 +3,16 @@
 import { NavLink } from "react-router-dom";
 import Avatar from "components/avatar";
 import LoginForm from "components/login-form";
-import { isLoggedIn } from "redux/user/selectors";
+import { authentication } from "redux/user/selectors";
 import s from "./style.module.css";
 import { useAppSelector } from "../../redux/hooks";
 
 const Header: React.FC = () => {
-  const statusLogged = useAppSelector(isLoggedIn);
+  const auth = useAppSelector(authentication);
 
   return (
     <div className={s.container}>
-      {statusLogged ? (
+      {auth ? (
         <>
           <NavLink
             to="/contacts"
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
           Home
         </NavLink>
       )}
-      {statusLogged ? <Avatar /> : <LoginForm />}
+      {auth ? <Avatar /> : <LoginForm />}
     </div>
   );
 };

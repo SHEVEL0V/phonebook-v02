@@ -8,23 +8,25 @@ import {
   repitSendMail,
   logoutUser,
   fetchCurentUser,
-  // updateAvatar,
+  updateAvatar,
 } from "./operations";
 
 export interface IState {
   user: { name: string; email: string; avatarURL: string };
   token: string;
-  isLoggedIn: boolean;
   authentication: boolean;
-  loading: boolean;
+  isloadedReg: boolean;
+  isloadedLog: boolean;
+  isloadedAdd: boolean;
 }
 
 const initialState: IState = {
   user: { name: "", email: "", avatarURL: "" },
   token: "",
-  isLoggedIn: false,
   authentication: false,
-  loading: false,
+  isloadedReg: false,
+  isloadedLog: false,
+  isloadedAdd: false,
 };
 
 const user = createSlice({
@@ -35,46 +37,53 @@ const user = createSlice({
     builder
       .addCase(singnupUser.pending, (state) => {
         state.authentication = false;
-        state.loading = true;
+        state.isloadedReg = true;
       })
       .addCase(singnupUser.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isloadedReg = false;
         state.authentication = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(singnupUser.rejected, (state) => {
         state.authentication = false;
-        state.loading = false;
+        state.isloadedReg = false;
       })
       .addCase(loginUser.pending, (state) => {
-        state.loading = true;
+        state.isloadedLog = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
         state.authentication = true;
-        state.loading = false;
+        state.isloadedLog = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
       .addCase(loginUser.rejected, (state) => {
-        state.loading = false;
+        state.isloadedLog = false;
       })
       .addCase(repitSendMail.pending, (state) => {
-        state.loading = true;
+        state.isloadedReg = true;
       })
       .addCase(repitSendMail.fulfilled, (state) => {
-        state.loading = false;
+        state.isloadedReg = false;
       })
       .addCase(repitSendMail.rejected, (state) => {
-        state.loading = false;
+        state.isloadedReg = false;
       })
       .addCase(fetchCurentUser.fulfilled, (state) => {
         state.authentication = true;
       })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.isLoggedIn = false;
-      });
+      .addCase(updateAvatar.pending, (state) => {
+        state.isloadedAdd = true;
+      })
+      .addCase(updateAvatar.fulfilled, (state, { payload }) => {
+        state.isloadedAdd = false;
+        state.user.avatarURL = payload.avatarURL;
+      })
+      .addCase(updateAvatar.rejected, (state) => {
+        state.isloadedAdd = false;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {});
   },
 });
 

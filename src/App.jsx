@@ -6,7 +6,7 @@ import Container from "./components/container";
 import Header from "components/header";
 import Footer from "components/footer";
 import { useSelector, useDispatch } from "react-redux";
-import { isLoggedIn } from "redux/user/selectors";
+import { authentication } from "redux/user/selectors";
 import { fetchCurentUser } from "redux/user/operations";
 import ContactsPage from "views/contacts-page";
 import { useEffect } from "react";
@@ -16,7 +16,7 @@ const Home = lazy(() => import("views/home-page"));
 const UserPage = lazy(() => import("views/user-page"));
 
 export default function App() {
-  const status = useSelector(isLoggedIn);
+  const status = useSelector(authentication);
   const dispatch = useDispatch();
 
   useEffect(() => {

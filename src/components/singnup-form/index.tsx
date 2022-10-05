@@ -5,7 +5,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import ClipLoader from "react-spinners/ClipLoader";
 import MailRepit from "components/mailRepit";
-import { loading } from "redux/user/selectors";
+import { isloadedReg } from "redux/user/selectors";
 import { singnupUser } from "redux/user/operations";
 import Buttton from "components/button/button";
 import s from "./style.module.css";
@@ -63,7 +63,9 @@ const SignupForm: React.FC<IProps> = ({ onClose }) => {
       </label>
 
       <Buttton
-        children={useAppSelector(loading) ? <ClipLoader size={15} /> : "signup"}
+        children={
+          useAppSelector(isloadedReg) ? <ClipLoader size={15} /> : "signup"
+        }
         type="submit"
         disabled={name === "" || email === "" || password === ""}
       />
