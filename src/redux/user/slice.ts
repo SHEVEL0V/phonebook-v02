@@ -83,7 +83,9 @@ const user = createSlice({
       .addCase(updateAvatar.rejected, (state) => {
         state.isloadedAdd = false;
       })
-      .addCase(logoutUser.fulfilled, (state) => {});
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.authentication = false;
+      });
   },
 });
 
