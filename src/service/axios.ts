@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const USERS_URL = "http://localhost:3030/api";
+const USERS_URL = "https://api-shevelov.herokuapp.com/api";
 
 axios.defaults.baseURL = USERS_URL;
 
