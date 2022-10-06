@@ -10,9 +10,10 @@ interface IBody {
 
 export const deleteContact = createAsyncThunk<IContacts, IBody>(
   "deleteContact",
-  async (id) => {
+  async ({ id }) => {
     try {
       const { data } = await axios.delete(`/contacts/${id}`);
+
       return data;
     } catch (err: any) {
       axiosError(err);

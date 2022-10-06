@@ -80,7 +80,7 @@ const ContactCard: React.FC<IProps> = ({ card }) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     dispatch(updateId(e.currentTarget.id));
-    dispatch(deleteContact({ id: id }));
+    dispatch(deleteContact({ id }));
   };
 
   const IconFavorite = () =>
